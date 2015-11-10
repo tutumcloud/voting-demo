@@ -54,3 +54,5 @@ docs/_build/
 target/
 
 .idea/
+
+result-app/node_modules
