@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8">
+  <title>Cats vs Dogs</title>
+  <base href="/index.html">
+  <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+  <meta name="keywords" content="docker-compose, docker, stack">
+  <meta name="author" content="Tutum dev team">
+  <body>
+    <h3>Cats VS {{name}}!</h3>
+    <b>Hostname:</b> {{hostname}}<br/>
+    <b>Visits:</b> {{visits}}<br/>
+    <form name='form' method="POST" action="/">
+      <input type="submit" name="cats" value="Cats"><b>{{cats}}</b>
+      <input type="submit" name="cats" value="Dogs"><b>{{dogs}}</b>
+    </form>
+  </body>
+</html>
