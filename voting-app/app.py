@@ -27,6 +27,7 @@ def hello():
         if request.form['cats'] == 'Cats':
             try:
                 cats = redis.incr('cats')
+                redis.publish('pubsub', 'update')
             except Exception as e:
                 print e
                 cats = "<i>An error occured</i>"
@@ -34,6 +35,7 @@ def hello():
         if request.form['cats'] == 'Dogs':
             try:
                 dogs = redis.incr('dogs')
+                redis.publish('pubsub', 'update')
             except Exception as e:
                 print e
                 dogs = "<i>An error occured</i>"
