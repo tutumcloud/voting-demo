@@ -10,6 +10,15 @@ body{
   opacity:0;
   transition: all 1s linear;
 }
+
+#background-stats-1{
+  background-color: #2196f3;
+}
+
+#background-stats-2{
+  background-color: #00cbca;
+}
+
 #content-container{
   z-index:2;
   position:relative;
@@ -40,6 +49,12 @@ body{
 #choice a:hover, #choice a:focus{
   outline:0;
   text-decoration:underline;
+}
+#choice .choice.cats{
+  color: #2196f3;
+}
+#choice .choice.dogs{
+  color: #00cbca;
 }
 #background-stats{
   z-index:1;
