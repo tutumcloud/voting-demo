@@ -18,16 +18,16 @@ app.controller('statsCtrl', function($scope){
     bg2.style.width = percentB+"%";
   };
 
-  $scope.catPercent = "";
-  $scope.dogPercent = "";
+  $scope.catPercent = "50%";
+  $scope.dogPercent = "50%";
 
   var updateScores = function(){
     socket.on('scores', function (data) {
        data = JSON.parse(data);
        animateStats(data.cats, data.dogs);
        $scope.$apply(function() {
-         $scope.catPercent = data.cats;
-         $scope.dogPercent = data.dogs;
+         $scope.catPercent = data.cats/(data.cats+data.dogs) * 100 + "%";
+         $scope.dogPercent = data.dogs/(data.cats+data.dogs) * 100 + "%";
       });
     });
   };
