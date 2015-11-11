@@ -6,6 +6,8 @@ var express = require('express'),
     io = require('socket.io').listen(app),
     app = express();
 
+io.set('origins', '*:*');
+
 var port = process.env.PORT || 4000;
 var password = process.env.REDIS_ENV_REDIS_PASS;
 var options = {
@@ -20,17 +22,35 @@ client.on("error", function (err) {
     console.log("Error " + err);
 });
 
-client.subscribe("pubsub");
+io.sockets.on('connection', function (socket) {
+
+  socket.emit('message', { text : 'Welcome!' });
+
+  socket.on('subscribe', function (data) {
+    socket.join(data.channel);
+  });
+});
+
+client.on("ready", function(){
+  client.subscribe("pubsub");
+});
+
 client.on("message", function(channel, message){
   console.log(message);
-  io.sockets.on('connection', function (socket) {
-  		socket.emit('scores', message);
-  });
+  console.log(channel);
+  io.sockets.emit("scores", message);
 });
 
 app.use(cookieParser());
 app.use(bodyParser());
 app.use(methodOverride('X-HTTP-Method-Override'));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
+  next();
+});
+
 app.use(express.static(__dirname + '/views'));
 
 app.get('/', function (req, res) {

@@ -8,5 +8,15 @@
   <meta name="author" content="Tutum dev team">
   <body>
     <h3>Cats VS Dogs: Result</h3>
+    <script src="http://192.168.99.100:5002/socket.io/socket.io.js"></script>
+	  <script>
+  			var socket = io.connect("http://192.168.99.100:5002");
+  			socket.on('scores', function (data) {
+			     console.log(data);
+  			});
+        socket.on('message', function (data) {
+			     console.log(data);
+  			});
+     </script>
   </body>
 </html>
