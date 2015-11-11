@@ -36,8 +36,6 @@ client.on("ready", function(){
 });
 
 client.on("message", function(channel, message){
-  console.log(message);
-  console.log(channel);
   io.sockets.emit("scores", message);
 });
 
