@@ -3,6 +3,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
+    io = require('socket.io').listen(app),
     app = express();
 
 var port = process.env.PORT || 4000;
@@ -20,8 +21,11 @@ client.on("error", function (err) {
 });
 
 client.subscribe("pubsub");
-client.on("message", function(){
-  console.log("Update");
+client.on("message", function(channel, message){
+  console.log(message);
+  io.sockets.on('connection', function (socket) {
+  		socket.emit('scores', message);
+  });
 });
 
 app.use(cookieParser());
@@ -36,5 +40,5 @@ app.get('/', function (req, res) {
 var server = app.listen(port, function () {
   var host = server.address().address;
   var port = server.address().port;
-  console.log('Example app listening at http://%s:%s', host, port);
+  console.log('App running on port ' + port);
 });

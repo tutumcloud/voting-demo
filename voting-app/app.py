@@ -27,19 +27,19 @@ def hello():
         if request.form['cats'] == 'Cats':
             try:
                 cats = redis.incr('cats')
-                redis.publish('pubsub', 'update')
+                redis.publish('pubsub', '{"cats":'+str(cats)+', "dogs":'+str(dogs)+'}')
             except Exception as e:
                 print e
                 cats = "<i>An error occured</i>"
-            return render_template('index.html', name=os.getenv('NAME', "Dogs"), hostname=socket.gethostname(), visits=visits, dogs=dogs, cats=cats)
+            return render_template('thankyou.html', name=os.getenv('NAME', "Dogs"))
         if request.form['cats'] == 'Dogs':
             try:
                 dogs = redis.incr('dogs')
-                redis.publish('pubsub', 'update')
+                redis.publish('pubsub', '{"cats":'+str(cats)+', "dogs":'+str(dogs)+'}')
             except Exception as e:
                 print e
                 dogs = "<i>An error occured</i>"
-            return render_template('index.html', name=os.getenv('NAME', "Dogs"), hostname=socket.gethostname(), visits=visits, dogs=dogs, cats=cats)
+            return render_template('thankyou.html', name=os.getenv('NAME', "Dogs"))
     elif request.method == 'GET':
         return render_template('index.html', name=os.getenv('NAME', "Dogs"), hostname=socket.gethostname(), visits=visits, dogs=dogs, cats=cats)
 
