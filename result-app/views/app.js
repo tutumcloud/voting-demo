@@ -6,10 +6,12 @@ var bg2 = document.getElementById('background-stats-2');
 
 app.controller('statsCtrl', function($scope){
   var animateStats = function(a,b){
-    var percentA = a/(a+b)*100;
-    var percentB = 100-percentA;
-    bg1.style.width= percentA+"%";
-    bg2.style.width = percentB+"%";
+    if(a+b>0){
+      var percentA = a/(a+b)*100;
+      var percentB = 100-percentA;
+      bg1.style.width= percentA+"%";
+      bg2.style.width = percentB+"%";
+    }
   };
 
   $scope.catPercent = "50%";
@@ -20,8 +22,10 @@ app.controller('statsCtrl', function($scope){
        data = JSON.parse(data);
        animateStats(data.cats, data.dogs);
        $scope.$apply(function() {
-         $scope.catPercent = data.cats/(data.cats+data.dogs) * 100 + "%";
-         $scope.dogPercent = data.dogs/(data.cats+data.dogs) * 100 + "%";
+         if(data.cats + data.dogs > 0){
+           $scope.catPercent = data.cats/(data.cats+data.dogs) * 100 + "%";
+           $scope.dogPercent = data.dogs/(data.cats+data.dogs) * 100 + "%";
+         }
       });
     });
   };

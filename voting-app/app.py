@@ -19,6 +19,8 @@ def hello():
     try:
         dogs = redis.get("dogs")
         cats = redis.get("cats")
+        print dogs
+        print cats
         visits = redis.incr('counter')
     except RedisError:
         dogs = "<i>cannot connect to Redis, counter disabled</i>"
@@ -28,7 +30,7 @@ def hello():
         if request.form['cats'] == 'Cats' and 'cats' != request.cookies.get('vote'):
             try:
                 cats = redis.incr('cats')
-                if 'dogs' == request.cookies.get('vote') and (dogs > 0 or dogs == "true"):
+                if 'dogs' == request.cookies.get('vote') and int(dogs) > 0:
                     dogs = redis.decr('dogs');
                 redis.publish('pubsub', '{"cats":'+str(cats)+', "dogs":'+str(dogs)+'}')
             except Exception as e:
@@ -40,7 +42,7 @@ def hello():
         if request.form['cats'] == 'Dogs' and 'dogs' != request.cookies.get('vote'):
             try:
                 dogs = redis.incr('dogs')
-                if 'cats' == request.cookies.get('vote') and (cats > 0 or cats == "true"):
+                if 'cats' == request.cookies.get('vote') and int(cats) > 0:
                     cats = redis.decr('cats');
                 redis.publish('pubsub', '{"cats":'+str(cats)+', "dogs":'+str(dogs)+'}')
             except Exception as e:
