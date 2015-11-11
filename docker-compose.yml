@@ -9,7 +9,8 @@ result-app:
   links:
     - "redis:redis"
   ports:
-    - "5001:80"
+    - "5002:80"
+    - "5001:8080"
 redis:
   image: tutum/redis
   environment:
