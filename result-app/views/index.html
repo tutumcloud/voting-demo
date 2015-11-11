@@ -1,22 +1,30 @@
 <!DOCTYPE html>
-<html>
-  <meta charset="utf-8">
-  <title>Cats vs Dogs -- Result</title>
-  <base href="/index.html">
-  <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
-  <meta name="keywords" content="docker-compose, docker, stack">
-  <meta name="author" content="Tutum dev team">
+<html ng-app="catsvsdogs">
+  <head>
+    <meta charset="utf-8">
+    <title>Cats vs Dogs -- Result</title>
+    <base href="/index.html">
+    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+    <meta name="keywords" content="docker-compose, docker, stack">
+    <meta name="author" content="Tutum dev team">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
   <body>
-    <h3>Cats VS Dogs: Result</h3>
+    <body ng-controller="statsCtrl" >
+     <div id="background-stats">
+       <div ng-style="{'background':color[0]}" id="background-stats-1"></div><!--
+      --><div ng-style="{'background':color[1]}" id="background-stats-2"></div>
+    </div>
+    <div id="content-container">
+      <div id="content-container-center">
+        <p id="choice">
+        <a ng-cloak ng-style="{'color':color[0]}" class="choice">Cats</a>
+        VS
+        <a ng-cloak ng-style="{'color':color[1]} "class="choice">Dogs</a></p>
+      </div>
+    </div>
     <script src="http://192.168.99.100:5002/socket.io/socket.io.js"></script>
-	  <script>
-  			var socket = io.connect("http://192.168.99.100:5002");
-  			socket.on('scores', function (data) {
-			     console.log(data);
-  			});
-        socket.on('message', function (data) {
-			     console.log(data);
-  			});
-     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
