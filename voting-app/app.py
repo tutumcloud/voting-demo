@@ -28,7 +28,7 @@ def hello():
         if request.form['cats'] == 'Cats' and 'cats' != request.cookies.get('vote'):
             try:
                 cats = redis.incr('cats')
-                if 'dogs' == request.cookies.get('vote'):
+                if 'dogs' == request.cookies.get('vote') and (dogs > 0 or dogs == "true"):
                     dogs = redis.decr('dogs');
                 redis.publish('pubsub', '{"cats":'+str(cats)+', "dogs":'+str(dogs)+'}')
             except Exception as e:
@@ -40,7 +40,7 @@ def hello():
         if request.form['cats'] == 'Dogs' and 'dogs' != request.cookies.get('vote'):
             try:
                 dogs = redis.incr('dogs')
-                if 'cats' == request.cookies.get('vote'):
+                if 'cats' == request.cookies.get('vote') and (cats > 0 or cats == "true"):
                     cats = redis.decr('cats');
                 redis.publish('pubsub', '{"cats":'+str(cats)+', "dogs":'+str(dogs)+'}')
             except Exception as e:
