@@ -12,15 +12,17 @@
   <body>
     <body ng-controller="statsCtrl" >
      <div id="background-stats">
-       <div ng-style="{'background':color[0]}" id="background-stats-1"></div><!--
-      --><div ng-style="{'background':color[1]}" id="background-stats-2"></div>
+       <div ng-style="{'background':color[0]}" id="background-stats-1">
+       </div><!--
+      --><div ng-style="{'background':color[1]}" id="background-stats-2">
+      </div>
     </div>
     <div id="content-container">
       <div id="content-container-center">
         <p id="choice">
-        <a ng-cloak ng-style="{'color':color[0]}" class="choice">Cats</a>
+        <span ng-cloak ng-style="{'color':color[0]}" class="choice">Cats – {{catPercent}}</span>
         VS
-        <a ng-cloak ng-style="{'color':color[1]} "class="choice">Dogs</a></p>
+        <span ng-cloak ng-style="{'color':color[1]} "class="choice">Dogs – {{dogPercent}}</span></p>
       </div>
     </div>
     <script src="http://192.168.99.100:5002/socket.io/socket.io.js"></script>
