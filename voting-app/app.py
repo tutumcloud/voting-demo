@@ -34,7 +34,7 @@ def hello():
             except Exception as e:
                 print e
                 cats = "<i>An error occured</i>"
-            resp =  make_response(render_template('thankyou.html', name=os.getenv('NAME', "Dogs")))
+            resp =  make_response(render_template('index.html', name=os.getenv('NAME', "Dogs")))
             resp.set_cookie('vote', 'cats')
             return resp
         if request.form['cats'] == 'Dogs' and 'dogs' != request.cookies.get('vote'):
@@ -46,7 +46,7 @@ def hello():
             except Exception as e:
                 print e
                 dogs = "<i>An error occured</i>"
-            resp =  make_response(render_template('thankyou.html', name=os.getenv('NAME', "Dogs")))
+            resp =  make_response(render_template('index.html', name=os.getenv('NAME', "Dogs")))
             resp.set_cookie('vote', 'dogs')
             return resp
         else:
