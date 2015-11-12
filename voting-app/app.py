@@ -7,7 +7,7 @@ import os
 import socket
 
 # Connect to Redis
-redis = Redis(host="redis", db=0, password=os.environ.get('REDIS_ENV_REDIS_PASS'))
+redis = Redis(host="redis", db=0)
 
 app = Flask(__name__)
 
@@ -58,4 +58,4 @@ def hello():
 
 
 if __name__ == "__main__":
-	app.run(host='0.0.0.0', port=80, debug=True)
+	app.run(host='0.0.0.0', port=80)
