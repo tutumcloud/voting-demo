@@ -14,8 +14,8 @@ app.controller('statsCtrl', function($scope){
     }
   };
 
-  $scope.catPercent = "50%";
-  $scope.dogPercent = "50%";
+  $scope.catPercent = 50;
+  $scope.dogPercent = 50;
 
   var updateScores = function(){
     socket.on('scores', function (data) {
@@ -23,8 +23,8 @@ app.controller('statsCtrl', function($scope){
        animateStats(data.cats, data.dogs);
        $scope.$apply(function() {
          if(data.cats + data.dogs > 0){
-           $scope.catPercent = data.cats/(data.cats+data.dogs) * 100 + "%";
-           $scope.dogPercent = data.dogs/(data.cats+data.dogs) * 100 + "%";
+           $scope.catPercent = data.cats/(data.cats+data.dogs) * 100;
+           $scope.dogPercent = data.dogs/(data.cats+data.dogs) * 100;
          }
       });
     });
