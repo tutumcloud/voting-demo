@@ -10,6 +10,9 @@
     <link rel='stylesheet' href="{{ url_for('static',filename='stylesheets/style.css') }}" />
   </head>
   <body>
+    <div class="hostname">
+      {{hostname}}
+    </div>
     <form id="choice" name='form' method="POST" action="/">
       <input id="cats" type="submit" name="cats" class="cats" value="Cats">
       <input id="dogs" type="submit" name="cats" class="dogs" value="Dogs">
