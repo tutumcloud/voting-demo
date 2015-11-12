@@ -9,8 +9,7 @@
     <meta name="author" content="Tutum dev team">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <body>
-    <body ng-controller="statsCtrl" >
+  <body ng-controller="statsCtrl" >
      <div id="background-stats">
        <div id="background-stats-1">
        </div><!--
@@ -19,13 +18,20 @@
     </div>
     <div id="content-container">
       <div id="content-container-center">
-        <p id="choice">
-        <span ng-cloak class="choice cats">Cats – {{catPercent}}</span>
-        VS
-        <span ng-cloak class="choice dogs">Dogs – {{dogPercent}}</span></p>
+        <div id="choice">
+          <div class="choice cats">
+            <div class="label">Cats</div>
+            <div class="stat">{{catPercent | number:1}}%</div>
+          </div>
+          <div class="divider"></div>
+          <div class="choice dogs">
+            <div class="label">Dogs</div>
+            <div class="stat">{{dogPercent | number:1}}%</div>
+          </div>
+        </div>
       </div>
     </div>
-    <script src="http://result-app.dceu.maximeheckel.svc.tutum.io:5002/socket.io/socket.io.js"></script>
+    <script src="http://result-app.dceu.maximeheckel.svc.tutum.io:5002//socket.io/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="app.js"></script>
   </body>
