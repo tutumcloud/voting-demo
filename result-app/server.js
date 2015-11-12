@@ -3,17 +3,16 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
-    io = require('socket.io').listen(app),
-    app = express();
-
-io.set('origins', '*:*');
+    app = express(),
+    server = require('http').Server(app),
+    io = require('socket.io')(server);
+    
+io.set('transports', ['polling']);
 
 var port = process.env.PORT || 4000;
-var password = process.env.REDIS_ENV_REDIS_PASS;
 var options = {
   "host": "redis",
-  "port":"6379",
-  "auth_pass": password
+  "port":"6379"
 };
 
 var client = redis.createClient(options);
@@ -55,8 +54,7 @@ app.get('/', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/views/index.html'));
 });
 
-var server = app.listen(port, function () {
-  var host = server.address().address;
+server.listen(port, function () {
   var port = server.address().port;
   console.log('App running on port ' + port);
 });

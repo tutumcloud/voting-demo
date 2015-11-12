@@ -1,5 +1,5 @@
 var app = angular.module('catsvsdogs', []);
-var socket = io.connect("http://result-app.dceu.maximeheckel.svc.tutum.io:5002");
+var socket = io.connect({transports:['polling']});
 
 var bg1 = document.getElementById('background-stats-1');
 var bg2 = document.getElementById('background-stats-2');
