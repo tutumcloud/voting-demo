@@ -36,7 +36,7 @@ def hello():
             except Exception as e:
                 print e
                 cats = "<i>An error occured</i>"
-            resp =  make_response(render_template('index.html', name=os.getenv('NAME', "Dogs")))
+            resp =  make_response(render_template('index.html', name=os.getenv('NAME', "Dogs"), hostname=socket.gethostname()))
             resp.set_cookie('vote', 'cats')
             return resp
         if request.form['cats'] == 'Dogs' and 'dogs' != request.cookies.get('vote'):
@@ -48,13 +48,13 @@ def hello():
             except Exception as e:
                 print e
                 dogs = "<i>An error occured</i>"
-            resp =  make_response(render_template('index.html', name=os.getenv('NAME', "Dogs")))
+            resp =  make_response(render_template('index.html', name=os.getenv('NAME', "Dogs"), hostname=socket.gethostname()))
             resp.set_cookie('vote', 'dogs')
             return resp
         else:
-            return render_template('index.html', name=os.getenv('NAME', "Dogs"), visits=visits)
+            return render_template('index.html', name=os.getenv('NAME', "Dogs"), hostname=socket.gethostname(), visits=visits)
     elif request.method == 'GET':
-        return render_template('index.html', name=os.getenv('NAME', "Dogs"), visits=visits)
+        return render_template('index.html', name=os.getenv('NAME', "Dogs"), hostname=socket.gethostname(), visits=visits)
 
 
 if __name__ == "__main__":
