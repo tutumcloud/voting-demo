@@ -25,6 +25,7 @@ app.controller('statsCtrl', function($scope){
          if(data.cats + data.dogs > 0){
            $scope.catPercent = data.cats/(data.cats+data.dogs) * 100;
            $scope.dogPercent = data.dogs/(data.cats+data.dogs) * 100;
+           $scope.total = data.cats + data.dogs;
          }
       });
     });
