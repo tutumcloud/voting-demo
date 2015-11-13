@@ -2,31 +2,42 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Cats VS {{name}}!</title>
+    <title>Cats vs {{name}}!</title>
     <base href="/index.html">
     <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
     <meta name="keywords" content="docker-compose, docker, stack">
     <meta name="author" content="Tutum dev team">
     <link rel='stylesheet' href="{{ url_for('static',filename='stylesheets/style.css') }}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   </head>
   <body>
-    <div class="hostname">
-      {{hostname}}
+    <div id="content-container">
+      <div id="content-container-center">
+        <h3>Cats vs {{name}}!</h3>
+        <form id="choice" name='form' method="POST" action="/">
+          <button id="cats" type="submit" name="cats" class="cats" value="Cats">Cats</button>
+          <button id="dogs" type="submit" name="cats" class="dogs" value="Dogs">Dogs</button>
+        </form>
+        <div id="tip">
+          (Tip: you can change your vote)
+        </div>
+        <div id="hostname">
+          Vote processed by {{hostname}}
+        </div>
+      </div>
     </div>
-    <form id="choice" name='form' method="POST" action="/">
-      <input id="cats" type="submit" name="cats" class="cats" value="Cats">
-      <input id="dogs" type="submit" name="cats" class="dogs" value="Dogs">
-    </form>
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script>
       if($.cookie("vote") == "cats"){
         $(".cats").prop('disabled', true);
-        $(".cats").css('text-decoration','underline');
+        $(".cats").html('Cats <i class="fa fa-check-circle"></i>');
+        $(".dogs").css('opacity','0.5');
       }
       if($.cookie("vote") == "dogs"){
         $(".dogs").prop('disabled', true);
-        $(".dogs").css('text-decoration', 'underline');
+        $(".dogs").html('Dogs <i class="fa fa-check-circle"></i>');
+        $(".cats").css('opacity','0.5');
       }
     </script>
   </body>
