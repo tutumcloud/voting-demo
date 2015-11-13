@@ -1,11 +1,11 @@
 voting:
-  build: voting-app/
+  build: voting/
   links:
     - redis
   ports:
     - "80:80"
 results:
-  build: result-app/
+  build: results/
   links:
     - redis
   ports:
