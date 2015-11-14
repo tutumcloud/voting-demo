@@ -20,8 +20,8 @@ name = optionA + " VS " + optionB
 @app.route("/", methods=['POST','GET'])
 def hello():
     try:
-        dogs = redis.get(optionB)
-        cats = redis.get(optionA)
+        dogs = redis.get(optionB) or 0
+        cats = redis.get(optionA) or 0
         visits = redis.incr('counter')
     except RedisError:
         dogs = "<i>cannot connect to Redis, counter disabled</i>"
