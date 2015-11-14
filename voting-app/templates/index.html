@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Cats vs {{name}}!</title>
+    <title>{{name}}!</title>
     <base href="/index.html">
     <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
     <meta name="keywords" content="docker-compose, docker, stack">
@@ -13,10 +13,10 @@
   <body>
     <div id="content-container">
       <div id="content-container-center">
-        <h3>Cats vs {{name}}!</h3>
+        <h3>{{name}}!</h3>
         <form id="choice" name='form' method="POST" action="/">
-          <button id="cats" type="submit" name="cats" class="cats" value="Cats">Cats</button>
-          <button id="dogs" type="submit" name="cats" class="dogs" value="Dogs">Dogs</button>
+          <button id="cats" type="submit" name="cats" class="cats" value="Cats">{{optionA}}</button>
+          <button id="dogs" type="submit" name="cats" class="dogs" value="Dogs">{{optionB}}</button>
         </form>
         <div id="tip">
           (Tip: you can change your vote)
@@ -31,12 +31,12 @@
     <script>
       if($.cookie("vote") == "cats"){
         $(".cats").prop('disabled', true);
-        $(".cats").html('Cats <i class="fa fa-check-circle"></i>');
+        $(".cats").html('{{optionA}} <i class="fa fa-check-circle"></i>');
         $(".dogs").css('opacity','0.5');
       }
       if($.cookie("vote") == "dogs"){
         $(".dogs").prop('disabled', true);
-        $(".dogs").html('Dogs <i class="fa fa-check-circle"></i>');
+        $(".dogs").html('{{optionB}} <i class="fa fa-check-circle"></i>');
         $(".cats").css('opacity','0.5');
       }
     </script>

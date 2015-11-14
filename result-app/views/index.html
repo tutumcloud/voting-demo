@@ -2,7 +2,7 @@
 <html ng-app="catsvsdogs">
   <head>
     <meta charset="utf-8">
-    <title>Cats vs Dogs -- Result</title>
+    <title>Result page</title>
     <base href="/index.html">
     <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
     <meta name="keywords" content="docker-compose, docker, stack">
@@ -18,14 +18,14 @@
     </div>
     <div id="content-container">
       <div id="content-container-center">
-        <div id="choice">
+        <div ng-if="show" id="choice">
           <div class="choice cats">
-            <div class="label">Cats</div>
+            <div class="label">{{optionA}}</div>
             <div class="stat">{{catPercent | number:1}}%</div>
           </div>
           <div class="divider"></div>
           <div class="choice dogs">
-            <div class="label">Dogs</div>
+            <div class="label">{{optionB}}</div>
             <div class="stat">{{dogPercent | number:1}}%</div>
           </div>
         </div>
