@@ -1,14 +1,14 @@
-voting-app:
-  build: ./voting-app/.
+voting:
+  build: voting/
   links:
-    - "redis:redis"
+    - redis
   ports:
-    - "5000:80"
-result-app:
-  build: ./result-app/.
+    - "80:80"
+results:
+  build: results/
   links:
-    - "redis:redis"
+    - redis
   ports:
-    - "5001:80"
+    - "8000:80"
 redis:
   image: redis

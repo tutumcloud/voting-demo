@@ -1,0 +1,7 @@
+sut:
+  image: this
+  links:
+    - redis
+  command: echo "Tests pass!"
+redis:
+  image: redis
