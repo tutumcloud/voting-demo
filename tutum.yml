@@ -9,15 +9,13 @@ lb:
 redis:
   image: redis:latest
 results:
-  image: tutum.co/fermayo/results:latest
-  autoredeploy: true
+  image: tutum/results-demo:latest
   links:
     - redis
   ports:
     - '8000:80'
 voting:
-  image: tutum.co/fermayo/voting:latest
-  autoredeploy: true
+  image: tutum/voting-demo:latest
   links:
     - redis
   target_num_containers: 3
