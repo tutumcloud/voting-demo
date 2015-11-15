@@ -5,8 +5,6 @@
     <title>{{name}}!</title>
     <base href="/index.html">
     <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
-    <meta name="keywords" content="docker-compose, docker, stack">
-    <meta name="author" content="Tutum dev team">
     <link rel='stylesheet' href="{{ url_for('static',filename='stylesheets/style.css') }}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   </head>
@@ -14,9 +12,9 @@
     <div id="content-container">
       <div id="content-container-center">
         <h3>{{name}}!</h3>
-        <form id="choice" name='form' method="POST" action="/">
-          <button id="cats" type="submit" name="cats" class="cats" value="Cats">{{optionA}}</button>
-          <button id="dogs" type="submit" name="cats" class="dogs" value="Dogs">{{optionB}}</button>
+        <form id="choice" name='form' method="POST" action="">
+          <button id="optionA" type="submit" name="option" class="optionA" value="optionA">{{optionA}}</button>
+          <button id="optionB" type="submit" name="option" class="optionB" value="optionB">{{optionB}}</button>
         </form>
         <div id="tip">
           (Tip: you can change your vote)
@@ -29,15 +27,15 @@
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script>
-      if($.cookie("vote") == "cats"){
-        $(".cats").prop('disabled', true);
-        $(".cats").html('{{optionA}} <i class="fa fa-check-circle"></i>');
-        $(".dogs").css('opacity','0.5');
+      if($.cookie("vote") == "optionA"){
+        $(".optionA").prop('disabled', true);
+        $(".optionA").html('{{optionA}} <i class="fa fa-check-circle"></i>');
+        $(".optionB").css('opacity','0.5');
       }
-      if($.cookie("vote") == "dogs"){
-        $(".dogs").prop('disabled', true);
-        $(".dogs").html('{{optionB}} <i class="fa fa-check-circle"></i>');
-        $(".cats").css('opacity','0.5');
+      if($.cookie("vote") == "optionB"){
+        $(".optionB").prop('disabled', true);
+        $(".optionB").html('{{optionB}} <i class="fa fa-check-circle"></i>');
+        $(".optionA").css('opacity','0.5');
       }
     </script>
   </body>
