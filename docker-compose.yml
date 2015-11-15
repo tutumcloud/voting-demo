@@ -1,4 +1,4 @@
-lb:
+votinglb:
   image: tutum/haproxy
   links:
     - voting
