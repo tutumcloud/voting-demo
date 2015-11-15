@@ -6,8 +6,6 @@ lb:
     - '80:80'
   roles:
     - global
-redis:
-  image: redis:latest
 results:
   image: tutum/results-demo:latest
   links:
@@ -19,3 +17,5 @@ voting:
   links:
     - redis
   target_num_containers: 3
+redis:
+  image: redis:latest
