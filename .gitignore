@@ -56,3 +56,4 @@ target/
 .idea/
 
 result-app/node_modules
+tutum.*.yml

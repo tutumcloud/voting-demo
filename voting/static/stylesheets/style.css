@@ -27,11 +27,11 @@ button i{
   margin-top: 3px;
 }
 
-button.cats{
+button.optionA{
   background-color: #1aaaf8;
 }
 
-button.dogs{
+button.optionB{
   background-color: #00cbca;
 }
 
@@ -98,19 +98,19 @@ button.dogs{
   padding-left: 50px;
 }
 
-#choice button.cats:hover{
+#choice button.optionA:hover{
   background-color: #1488c6;
 }
 
-#choice button.dogs:hover{
+#choice button.optionB:hover{
   background-color: #00a2a1;
 }
 
-#choice button.cats:focus{
+#choice button.optionA:focus{
   background-color: #1488c6;
 }
 
-#choice button.dogs:focus{
+#choice button.optionB:focus{
   background-color: #00a2a1;
 }
 
