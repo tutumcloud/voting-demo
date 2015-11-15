@@ -27,7 +27,7 @@ def hello():
         if request.form['option'] == 'optionA':
             try:
                 votesA = redis.incr(optionA)
-                if int(votesB) > 0:
+                if int(votesB) > 0 and 'optionB' == request.cookies.get('vote'):
                     votesB = redis.decr(optionB);
                 redis.publish('pubsub', '{"'+optionA+'":'+str(votesA)+', "'+optionB+'":'+str(votesB)+'}')
             except Exception as e:
@@ -39,7 +39,7 @@ def hello():
         if request.form['option'] == 'optionB':
             try:
                 votesB = redis.incr(optionB)
-                if int(votesA) > 0:
+                if int(votesA) > 0 and 'optionA' == request.cookies.get('vote'):
                     votesA = redis.decr(optionA);
                 redis.publish('pubsub', '{"'+optionA+'":'+str(votesA)+', "'+optionB+'":'+str(votesB)+'}')
             except Exception as e:
