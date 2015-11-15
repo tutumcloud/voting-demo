@@ -1,9 +1,13 @@
+lb:
+  image: tutum/haproxy
+  links:
+    - voting
+  ports:
+    - '80:80'
 voting:
   build: voting/
   links:
     - redis
-  ports:
-    - "80:80"
 results:
   build: results/
   links:
