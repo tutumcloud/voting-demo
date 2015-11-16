@@ -6,6 +6,8 @@ from redis import Redis, RedisError
 import os
 import socket
 import logging
+import signal
+import sys
 
 optionA = "Cats"
 optionB = "Dogs"
@@ -55,4 +57,5 @@ def hello():
 
 
 if __name__ == "__main__":
-	app.run(host='0.0.0.0', port=80)
+    signal.signal(signal.SIGTERM, sys.exit)
+    app.run(host='0.0.0.0', port=80)

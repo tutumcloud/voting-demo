@@ -1,5 +1,5 @@
-lb:
-  image: tutum/haproxy:latest
+votinglb:
+  image: tutum/haproxy
   links:
     - voting
   ports:
@@ -7,15 +7,15 @@ lb:
   roles:
     - global
 results:
-  image: tutum/results-demo:latest
+  image: tutum/results-demo
   links:
     - redis
   ports:
     - '8000:80'
 voting:
-  image: tutum/voting-demo:latest
+  image: tutum/voting-demo
   links:
     - redis
   target_num_containers: 3
 redis:
-  image: redis:latest
+  image: redis
