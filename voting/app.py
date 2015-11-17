@@ -26,11 +26,11 @@ def hello():
         votesB = "<i>cannot connect to Redis, counter disabled</i>"
         votesA = "<i>cannot connect to Redis, counter disabled</i>"
     if request.method == 'POST':
-        if request.form['option'] == 'optionA':
+        if request.form['option'] == 'optionA' and 'optionA' != request.cookies.get('vote'):
             try:
                 votesA = redis.incr(optionA)
                 if int(votesB) > 0 and 'optionB' == request.cookies.get('vote'):
-                    votesB = redis.decr(optionB);
+                    votesB = redis.decr(optionB)
                 redis.publish('pubsub', '{"'+optionA+'":'+str(votesA)+', "'+optionB+'":'+str(votesB)+'}')
             except Exception as e:
                 print e
@@ -38,11 +38,11 @@ def hello():
             resp = make_response(render_template('index.html', name=os.getenv('NAME', name), hostname=socket.gethostname(), optionA=optionA, optionB=optionB))
             resp.set_cookie('vote', 'optionA')
             return resp
-        if request.form['option'] == 'optionB':
+        if request.form['option'] == 'optionB' and 'optionB' != request.cookies.get('vote'):
             try:
                 votesB = redis.incr(optionB)
                 if int(votesA) > 0 and 'optionA' == request.cookies.get('vote'):
-                    votesA = redis.decr(optionA);
+                    votesA = redis.decr(optionA)
                 redis.publish('pubsub', '{"'+optionA+'":'+str(votesA)+', "'+optionB+'":'+str(votesB)+'}')
             except Exception as e:
                 print e
